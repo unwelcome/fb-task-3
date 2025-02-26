@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1f1f1f;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
+p {
+  font-size: 16px;
+}
+
+.body-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.category-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 50px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #a5a5a5;
+}
+.category-wrapper > h2 {
+  font-size: 25px;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  padding: 10px;
+  flex-basis: 250px;
+}
+.card > .title {
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+.card > .price {
+  margin-bottom: 10px;
+}
+.card > .price .price-value {
+  color: #ce2c2c;
+  font-weight: 600;
+}
+.card > .description {
+  text-align: justify;
+  flex-grow: 1;
+}
+.card > .btn {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 30px;
+  background-color: #3ac403;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.15s linear;
+}
+.card > .btn:hover {
+  background-color: #3fdd00;
+}
+.card > .btn:active {
+  background-color: #2fa500;
+}
+.card > .btn-delete {
+  margin-top: 0;
+  background-color: #df0000;
+}
+.card > .btn-delete:hover {
+  background-color: #c70000;
+}
+.card > .btn-delete:active {
+  background-color: #910000;
+}/*# sourceMappingURL=index.css.map */
