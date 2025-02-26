@@ -2,7 +2,6 @@ document.addEventListener('cardsAdded', function() {
     const cardsHTML = document.querySelectorAll('.card');
 
     for(const card of cardsHTML){
-        console.log(card);
         const btn = document.createElement('input');
         btn.setAttribute('type', 'button');
         btn.setAttribute('value', 'Удалить');
@@ -24,5 +23,9 @@ const deleteCardRequest = async (id) => {
     console.log(response);
 
     if(response.status === 204) console.log(`Card #${id} deleted succesful!`);
-    else console.log(`Something went wrong when delete card #${id}!`)
+    else console.log(`Something went wrong when delete card #${id}!`);
+
+    //просим обновить карточки
+    const event = new CustomEvent('updateCards');
+    document.dispatchEvent(event);
 }

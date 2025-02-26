@@ -105,11 +105,36 @@ app.get('/cards', (req, res) => {
 // Удалить карточку по ID
 app.delete('/card/:id', (req, res) => {
     const cardID = parseInt(req.params.id);
-    console.log('delete card#', cardID);
+    console.log(`Удаление карточки #${cardID}`);
 
-    
+    const cardsFilePath = path.join(__dirname, '..', 'database/cards.json');
 
-    res.status(204).send();
+    fs.readFile(cardsFilePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Ошибка чтения файла');
+            return res.status(500).json({ error: 'Ошибка чтения данных' });
+        }
+
+        try {
+            let cards = JSON.parse(data);
+
+            cards = cards.filter(card => card.id !== cardID);
+
+            // Записываем обновленный массив обратно в файл
+            fs.writeFile(cardsFilePath, JSON.stringify(cards, null, 2), 'utf8', (writeErr) => {
+                if (writeErr) {
+                    console.error('Ошибка записи в файл');
+                    return res.status(500).json({ error: 'Ошибка записи данных' });
+                }
+
+                console.log(`Карточка #${cardID} успешно удалена`);
+                res.status(204).send();
+            });
+        } catch (parseError) {
+            console.error('Ошибка парсинга JSON');
+            return res.status(500).json({ error: 'Ошибка парсинга данных' });
+        }
+    });
 });
 
 // Запуск сервера

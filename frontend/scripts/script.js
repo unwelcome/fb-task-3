@@ -32,6 +32,11 @@ const getAllCards = async () => {
 
 getAllCards();
 
+//для обновления странички администратора
+document.addEventListener('updateCards', function() {
+    getAllCards();
+});
+
 
 const HTML_Card = (id=-1, name='', price=0, description='') => {
     return `
