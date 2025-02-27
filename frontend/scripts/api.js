@@ -23,3 +23,16 @@ export async function API_UpdateCardRequest(id, body) {
     });
     return response;
 }
+
+export async function API_CreateCardsRequest(body) {
+    const jsonBody = JSON.stringify(body);
+
+    const response = await fetch(`/card`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: jsonBody
+    });
+    return response;
+}

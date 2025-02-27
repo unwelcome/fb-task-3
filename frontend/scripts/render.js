@@ -26,3 +26,26 @@ export function Render_HTML_CategoryWrapper(name, cards) {
         </section>
     `;
 }
+
+export function Render_HTML_CreateItem(name='', categories='', price=0, desciption=''){
+    return `
+        <section class="create-item create-item-prototype">
+            <div class="create-item-field">
+                <p class="create-item-label">Название:</p>
+                <p class="create-item-label create-item-prototype-value">${name}</p>
+            </div>
+            <div class="create-item-field">
+                <p class="create-item-label">Категории:</p>
+                <p class="create-item-label create-item-prototype-value">${categories}</p>
+            </div>
+            <div class="create-item-field">
+                <p class="create-item-label">Цена:</p>
+                <p class="create-item-label create-item-prototype-value">${price}</p>
+            </div>
+            <div class="create-item-field">
+                <p class="create-item-label">Описание:</p>
+                <p class="create-item-label create-item-prototype-value">${desciption}</p>
+            </div>
+        </section>
+    `;
+}

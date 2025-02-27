@@ -181,4 +181,77 @@ p {
 }
 .form-item .btn-back:active {
   background-color: #bbae00;
+}
+
+.create-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-items: start;
+  margin: 20px 50px;
+}
+
+.create-prototype-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create-item {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.create-item-field {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+.create-item-label {
+  font-size: 15px;
+}
+.create-item-input {
+  font-size: 14px;
+  border: 2px solid rgb(82, 82, 82);
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #d2d2d2;
+}
+.create-item-prototype {
+  border: 1px solid #b2b2b2;
+  border-radius: 10px;
+  padding: 10px;
+}
+.create-item-prototype-value {
+  color: #595959;
+}
+.create-item-btn {
+  padding: 5px 10px;
+  font-size: 20px;
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.15s linear;
+}
+.create-item-btn-submit {
+  background-color: #3ac403;
+}
+.create-item-btn-submit:hover {
+  background-color: #3fdd00;
+}
+.create-item-btn-submit:active {
+  background-color: #2fa500;
+}
+.create-item-btn-add {
+  background-color: #dfd000;
+}
+.create-item-btn-add:hover {
+  background-color: #eddd01;
+}
+.create-item-btn-add:active {
+  background-color: #bbae00;
 }/*# sourceMappingURL=index.css.map */

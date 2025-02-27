@@ -203,3 +203,86 @@ p{
         }
     }
 }
+
+.create-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-items: start;
+    margin: 20px 50px;
+}
+
+.create-prototype-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.create-item{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    &-field{
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        gap: 10px;
+    }
+
+    &-label{
+        font-size: 15px;
+    }
+
+    &-input{
+        font-size: 14px;
+        border: 2px solid rgb(82, 82, 82);
+        border-radius: 10px;
+        padding: 5px 10px;
+        background-color: #d2d2d2;
+    }
+
+    &-prototype{
+        border: 1px solid #b2b2b2;
+        border-radius: 10px;
+        padding: 10px;
+
+        &-value{
+            color: #595959;
+        }
+    }
+
+    &-btn{
+        padding: 5px 10px;
+        font-size: 20px;
+        width: 200px;
+        border: none;
+        border-radius: 10px;
+        outline: none;
+        cursor: pointer;
+        transition: background-color .15s linear;
+
+        &-submit{
+            background-color: #3ac403;
+    
+            &:hover{
+                background-color: #3fdd00;
+            }
+            &:active{
+                background-color: #2fa500;
+            }
+        }
+    
+        &-add{
+            background-color: #dfd000;
+    
+            &:hover{
+                background-color: #eddd01;
+            }
+            &:active{
+                background-color: #bbae00;
+            }
+        }
+    }
+}

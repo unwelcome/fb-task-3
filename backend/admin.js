@@ -61,28 +61,37 @@ app.get('/cards', async(req, res) => {
     }
 });
 
-// // Создать новую задачу
-// app.post('/tasks', (req, res) => {
-//     const { title, completed } = req.body;
-//     const newTask = {
-//         id: tasks.length + 1,
-//         title,
-//         completed: completed || false,
-//     };
-//     tasks.push(newTask);
-//     res.status(201).json(newTask);
-// });
+// Создать новые карточки
+app.post('/card', async(req, res) => {
+    const dataFilePath = path.join(__dirname, '..', 'database/cards.json');
+    
+    try {
+        const fileData = await readJSONFromFile(dataFilePath);
+        if (fileData[0] !== 200) res.status(fileData[0]).json(fileData[1]);
 
-// // Получить задачу по ID
-// app.get('/tasks/:id', (req, res) => {
-//     const taskId = parseInt(req.params.id);
-//     const task = tasks.find(t => t.id === taskId);
-//     if (task) {
-//         res.json(task);
-//     } else {
-//         res.status(404).json({ message: 'Task not found' });
-//     }
-// });
+        let cards = fileData[1];
+        let latestCardID = cards[cards.length - 1].id + 1;
+
+        for(let card of req.body){
+            const newCard = {
+                id: latestCardID++,
+                name: card.name,
+                categories: card.categories.split(' '),
+                price: parseInt(card.price),
+                description: card.description
+            };
+            cards.push(newCard);
+        }
+
+        if(writeJSONToFile(dataFilePath, cards)) res.status(201).json({ message: 'Карточка(-и) успешно создана(-ы)!' });
+        else res.status(500).json({ message: 'Что-то пошло не так при создании карточки(-ек)!' });
+
+    } catch (error) {
+        console.error("Error reading cards:", error);
+        res.status(500).json({error: "Internal Server Error"});
+    }
+});
+
 
 // Обновить карточку по ID
 app.put('/card/:id', async(req, res) => {
@@ -126,38 +135,23 @@ app.put('/card/:id', async(req, res) => {
 });
 
 // Удалить карточку по ID
-app.delete('/card/:id', (req, res) => {
+app.delete('/card/:id', async(req, res) => {
     const cardID = parseInt(req.params.id);
-    console.log(`Удаление карточки #${cardID}`);
+    const dataFilePath = path.join(__dirname, '..', 'database/cards.json');
 
-    const cardsFilePath = path.join(__dirname, '..', 'database/cards.json');
+    try {
+        const fileData = await readJSONFromFile(dataFilePath);
+        if (fileData[0] !== 200) res.status(fileData[0]).json(fileData[1]);
 
-    fs.readFile(cardsFilePath, 'utf8', (err, data) => {
-        if (err) {
-            console.error('Ошибка чтения файла');
-            return res.status(500).json({ error: 'Ошибка чтения данных' });
-        }
+        let cards = fileData[1].filter(card => card.id !== cardID);
 
-        try {
-            let cards = JSON.parse(data);
+        if(writeJSONToFile(dataFilePath, cards)) res.status(204).json({ message: 'Карточка успешно удалена' });
+        else res.status(500).json({ message: 'Что-то пошло не так при удалении карточки' });
 
-            cards = cards.filter(card => card.id !== cardID);
-
-            // Записываем обновленный массив обратно в файл
-            fs.writeFile(cardsFilePath, JSON.stringify(cards, null, 2), 'utf8', (writeErr) => {
-                if (writeErr) {
-                    console.error('Ошибка записи в файл');
-                    return res.status(500).json({ error: 'Ошибка записи данных' });
-                }
-
-                console.log(`Карточка #${cardID} успешно удалена`);
-                res.status(204).send();
-            });
-        } catch (parseError) {
-            console.error('Ошибка парсинга JSON');
-            return res.status(500).json({ error: 'Ошибка парсинга данных' });
-        }
-    });
+    } catch (error) {
+        console.error("Error reading cards:", error);
+        res.status(500).json({error: "Internal Server Error"});
+    }
 });
 
 // Запуск сервера

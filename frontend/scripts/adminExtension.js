@@ -1,7 +1,16 @@
-import { API_DeleteCardRequest, API_UpdateCardRequest } from "./api.js";
+import { API_DeleteCardRequest, API_UpdateCardRequest, API_CreateCardsRequest } from "./api.js";
+import { Render_HTML_CreateItem } from "./render.js";
 
 const HTML_blur = [ document.getElementById('blur') , false];
 const HTML_form_card = [ document.getElementById('form-wrapper') , false];
+
+const HTML_create_card_prototype_wrapper = document.getElementById('create-prototype-wrapper');
+const HTML_create_card_name = document.getElementById('create-input-name');
+const HTML_create_card_categories = document.getElementById('create-input-categories');
+const HTML_create_card_price = document.getElementById('create-input-price');
+const HTML_create_card_description = document.getElementById('create-input-description');
+const HTML_create_card_add = document.getElementById('create-btn-add');
+const HTML_create_card_submit = document.getElementById('create-btn-submit');
 
 const HTML_form_card_name = document.getElementById('form-update-name');
 const HTML_form_card_categories = document.getElementById('form-update-categories');
@@ -11,6 +20,34 @@ const HTML_form_card_close = document.getElementById('form-update-close');
 const HTML_form_card_submit = document.getElementById('form-update-submit');
 
 let currentUpdateCardID = -1;
+const cardsToCreate = [];
+
+//создание нескольких товаров
+HTML_create_card_add.addEventListener('click', function(){
+    const newCard = addNewCard();
+
+    const template = document.createElement('template');
+    template.innerHTML = Render_HTML_CreateItem(newCard.name, newCard.categories, newCard.price, newCard.description).trim();
+    const newItem = template.content.firstChild;
+
+    if (HTML_create_card_prototype_wrapper && newItem) {
+        HTML_create_card_prototype_wrapper.insertBefore(newItem, HTML_create_card_prototype_wrapper.firstChild);
+    } else {
+        HTML_create_card_prototype_wrapper.appendChild(newItem);
+    }
+});
+
+HTML_create_card_submit.addEventListener('click', async function() {
+    addNewCard();
+
+    const response = await API_CreateCardsRequest(cardsToCreate);
+
+    cardsToCreate.length = 0;
+    clearCardPrototypes();
+
+    console.log(response);
+    if(response.status === 201) triggerUpdateCards();
+});
 
 document.addEventListener('cardsAdded', function() {
     const cardsHTML = document.querySelectorAll('.card');
@@ -24,7 +61,7 @@ document.addEventListener('cardsAdded', function() {
 
         btnUpdate.addEventListener('click', function() {
             openCardForm(
-                card.getAttribute("data-id"), 
+                card.getAttribute('data-id'), 
                 card.getAttribute('data-name'),
                 card.getAttribute('data-categories'),
                 card.getAttribute('data-price'),
@@ -42,8 +79,8 @@ document.addEventListener('cardsAdded', function() {
             //удаление карточки
             const response = await API_DeleteCardRequest(card.getAttribute("data-id"));
 
-            if(response.status === 204) console.log(`Card #${id} deleted succesful!`);
-            else console.log(`Something went wrong when delete card #${id}!`);
+            if(response.status === 204) console.log(`Карточка удалена успешно!`);
+            else console.log(`Что-то пошло не так при удалении карточки!`);
         
             //просим обновить карточки
             triggerUpdateCards();
@@ -102,6 +139,29 @@ function closeCardForm(){
     toggleBlur(false);
     HTML_form_card[0].style.display = 'none';
     HTML_form_card[1] = false;
+}
+//запоминаем новую карточку
+function addNewCard(){
+    const newCard = {
+        'name': HTML_create_card_name.value,
+        'categories': HTML_create_card_categories.value,
+        'price': HTML_create_card_price.value,
+        'description': HTML_create_card_description.value,
+    };
+
+    cardsToCreate.push(newCard);
+
+    HTML_create_card_name.value = '';
+    HTML_create_card_categories.value = '';
+    HTML_create_card_price.value = '';
+    HTML_create_card_description.value = '';
+
+    return newCard;
+}
+
+//очистка прототипов карточек
+function clearCardPrototypes(){
+    HTML_create_card_prototype_wrapper.innerHTML = '';
 }
 
 //просим обновить карточки
