@@ -78,6 +78,16 @@ p {
 .card > .btn:active {
   background-color: #2fa500;
 }
+.card > .btn-update {
+  margin-top: 0;
+  background-color: #dfd000;
+}
+.card > .btn-update:hover {
+  background-color: #eddd01;
+}
+.card > .btn-update:active {
+  background-color: #bbae00;
+}
 .card > .btn-delete {
   margin-top: 0;
   background-color: #df0000;
@@ -87,4 +97,87 @@ p {
 }
 .card > .btn-delete:active {
   background-color: #910000;
+}
+
+#blur {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 64;
+  background-color: rgba(14, 14, 14, 0.57);
+}
+
+.form-wrapper {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #c9c9c9;
+  left: 50%;
+  top: 50%;
+  z-index: 128;
+  transform: translate(-50%, -50%);
+}
+.form-wrapper-title {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.form-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.form-item-label {
+  font-size: 18px;
+}
+.form-item-input {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #1f1f1f;
+  background-color: #eeeeee;
+  font-size: 18px;
+}
+.form-item textarea {
+  width: 400px;
+  height: 150px;
+  resize: none;
+}
+.form-item-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  justify-items: center;
+  margin-top: 10px;
+}
+.form-item-btn {
+  padding: 10px;
+  font-size: 20px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.15s linear;
+}
+.form-item .btn-save {
+  background-color: #3ac403;
+}
+.form-item .btn-save:hover {
+  background-color: #3fdd00;
+}
+.form-item .btn-save:active {
+  background-color: #2fa500;
+}
+.form-item .btn-back {
+  background-color: #dfd000;
+}
+.form-item .btn-back:hover {
+  background-color: #eddd01;
+}
+.form-item .btn-back:active {
+  background-color: #bbae00;
 }/*# sourceMappingURL=index.css.map */

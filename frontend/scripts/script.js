@@ -1,6 +1,8 @@
-const getAllCards = async () => {
-    const response = await fetch('/cards');
-    const data = await response.json();
+import { API_GetAllCardsRequest } from "./api.js";
+import { Render_HTML_CategoryWrapper } from "./render.js";
+
+async function getAllCards() {
+    const data = await API_GetAllCardsRequest();
 
     const categories = new Map();
 
@@ -21,9 +23,9 @@ const getAllCards = async () => {
     let bodyWrapperContent = '';
 
     for(let categoryName of categories.keys()){
-        bodyWrapperContent += HTML_Category(categoryName, categories.get(categoryName));
+        bodyWrapperContent += Render_HTML_CategoryWrapper(categoryName, categories.get(categoryName));
     }
-
+    
     bodyWrapperHTML.innerHTML = bodyWrapperContent;
     //сигнализируем об обновлении карточек
     const event = new CustomEvent('cardsAdded');
@@ -38,29 +40,3 @@ document.addEventListener('updateCards', function() {
 });
 
 
-const HTML_Card = (id=-1, name='', price=0, description='') => {
-    return `
-        <div class="card" data-id="${id}">
-            <p class="title">${name}</p>
-            <p class="price">price: <span class="price-value">${price} руб</span></p>
-            <p class="description">${description}</p>
-            <input type="button" class="btn" value="Купить"/>
-        </div>
-    `;
-}
-
-const HTML_Category = (name, cards) => {
-    let stringifiedCards = '';
-    if(cards.length !== 0) cards.forEach(el => {
-        stringifiedCards += HTML_Card(el.id, el.name, el.price, el.description);
-    });
-
-    return `
-        <section class="category-wrapper">
-            <h2>${name}</h2>
-            <div class="card-wrapper">
-                ${stringifiedCards}
-            </div>
-        </section>
-    `;
-}

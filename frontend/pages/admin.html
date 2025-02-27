@@ -7,15 +7,41 @@
     <title>AdminPage</title>
 </head>
 <body>
-    <div>
-        
+    <!--для редактирования-->
+    <div id="blur"></div>
+    <div class="form-wrapper" id="form-wrapper">
+        <h2 class="form-wrapper-title">Изменение параметров товара</h2>
+
+        <div class="form-item">
+            <label for="name" class="form-item-label">Название:</label>
+            <input type="text" name="name" class="form-item-input" placeholder="Введите название товара"/>
+        </div>
+        <div class="form-item">
+            <label for="category" class="form-item-label">Категории:</label>
+            <input type="text" name="category" class="form-item-input" placeholder="Введите категорию товара"/>
+        </div>
+        <div class="form-item">
+            <label for="price" class="form-item-label">Цена:</label>
+            <input type="text" name="price" class="form-item-input" placeholder="Введите цену товара"/>
+        </div>
+        <div class="form-item">
+            <label for="description" class="form-item-label">Описание:</label>
+            <textarea type="text" name="description" class="form-item-input" placeholder="Введите описание товара"></textarea>
+        </div>
+
+        <div class="form-item form-item-btns">
+            <input type="button" class="form-item-btn btn-back" value="Отмена"/>
+            <input type="button" class="form-item-btn btn-save" value="Сохранить"/>
+        </div>
     </div>
 
     <div class="body-wrapper" id="body-wrapper">
         <!--JS-->
     </div>
 
-    <script src="../scripts/adminExtension.js" lang="js"></script>
-    <script src="../scripts/script.js" lang="js"></script>
+    <script src="../scripts/api.js" lang="js" type="module"></script>
+    <script src="../scripts/render.js" lang="js" type="module"></script>
+    <script src="../scripts/adminExtension.js" lang="js" type="module"></script>
+    <script src="../scripts/script.js" lang="js" type="module"></script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+import { API_DeleteCardRequest, API_UpdateCardRequest } from "./api.js";
+
 document.addEventListener('cardsAdded', function() {
     const cardsHTML = document.querySelectorAll('.card');
 
@@ -18,8 +20,16 @@ document.addEventListener('cardsAdded', function() {
         btnDelete.setAttribute('value', 'Удалить');
         btnDelete.classList = 'btn btn-delete';
 
-        btnDelete.addEventListener('click', function() {
-            deleteCardRequest(card.getAttribute("data-id"));
+        btnDelete.addEventListener('click', async function() {
+            //удаление карточки
+            const response = await API_DeleteCardRequest(card.getAttribute("data-id"));
+
+            if(response.status === 204) console.log(`Card #${id} deleted succesful!`);
+            else console.log(`Something went wrong when delete card #${id}!`);
+        
+            //просим обновить карточки
+            const event = new CustomEvent('updateCards');
+            document.dispatchEvent(event);
         });
 
         //добавляем кнопки на страницу
@@ -28,36 +38,6 @@ document.addEventListener('cardsAdded', function() {
     }
 });
 
-const openCardForm = () => {
-    
-}
+function openCardForm(){
 
-const updateCardRequest = async (id) => {
-    const response = await fetch(`/card/${id}`, {
-        method: 'PUT'
-    });
-
-    console.log(response);
-
-    if(response.status === 204) console.log(`Card #${id} deleted succesful!`);
-    else console.log(`Something went wrong when delete card #${id}!`);
-
-    //просим обновить карточки
-    const event = new CustomEvent('updateCards');
-    document.dispatchEvent(event);
-}
-
-const deleteCardRequest = async (id) => {
-    const response = await fetch(`/card/${id}`, {
-        method: 'DELETE'
-    });
-
-    console.log(response);
-
-    if(response.status === 204) console.log(`Card #${id} deleted succesful!`);
-    else console.log(`Something went wrong when delete card #${id}!`);
-
-    //просим обновить карточки
-    const event = new CustomEvent('updateCards');
-    document.dispatchEvent(event);
 }
