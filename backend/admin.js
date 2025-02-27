@@ -1,36 +1,13 @@
 import express from 'express';
-import fs from 'fs';
 import path from 'path';
 import { readJSONFromFile, writeJSONToFile } from './fileReader.js';
 import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
+import swaggerJsDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
 const app = express();
 const PORT = 3000;
-
-// const swaggerJsDoc = require('swagger-jsdoc');
-// const swaggerUi = require('swagger-ui-express');
-
-// // Swagger документация
-// const swaggerOptions = {
-//     swaggerDefinition: {
-//         openapi: '3.0.0',
-//         info: {
-//             title: 'Task Management API',
-//             version: '1.0.0',
-//             description: 'API для управления задачами',
-//         },
-//         servers: [
-//             {
-//                 url: 'http://localhost:3000',
-//             },
-//         ],
-//     },
-//     apis: ['openapi.yaml'], // укажите путь к файлам с аннотациями
-// };
-
-// const swaggerDocs = swaggerJsDoc(swaggerOptions);
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -92,7 +69,6 @@ app.post('/card', async(req, res) => {
     }
 });
 
-
 // Обновить карточку по ID
 app.put('/card/:id', async(req, res) => {
     const cardID = parseInt(req.params.id);
@@ -153,6 +129,27 @@ app.delete('/card/:id', async(req, res) => {
         res.status(500).json({error: "Internal Server Error"});
     }
 });
+
+// Swagger документация
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Card shop API',
+            version: '1.0.0',
+            description: 'API для управления карточками',
+        },
+        servers: [
+            {
+                url: 'http://localhost:3000',
+            },
+        ],
+    },
+    apis: [path.join(__dirname, './openapi.yaml')], // укажите путь к файлам с аннотациями
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Запуск сервера
 app.listen(PORT, () => {

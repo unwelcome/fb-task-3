@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  version: 1.0.11
+servers:
+  - url: http://localhost:3000
+paths:
+  /cards:
+    get:
+      summary: Получение всех карточек
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              items:
+                type: object
+                properties:
+                  id: 
+                    type: number
+                  name:
+                    type: string
+                  price:
+                    type: number
+                  description:
+                    type: string 
+                  categories:
+                    items:
+                      type: string
+                    type: array 
+              type: array
+      responses:
+        '201':
+          description: Задача создана
+  /card:
+    post:
+      summary: Создать новую карточку товара или несколько
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  price:
+                    type: number
+                  description:
+                    type: string 
+                  categories:
+                    items:
+                      type: string
+                    type: array 
+              type: array
+      responses:
+        '201':
+          description: Задача создана
+
+  /card/{id}:  
+    put:
+      summary: Обновить карточку товара по ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID товара
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                description:
+                  type: string
+                categories:
+                  items:
+                    type: string
+                  type: array
+      responses:
+        '200':
+            description: Карточка обновлена
+  
+    delete:
+      summary: Удалить карточку товара по ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID товара
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Карточка удалена
