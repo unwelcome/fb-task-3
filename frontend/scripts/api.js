@@ -11,9 +11,15 @@ export async function API_DeleteCardRequest(id) {
     return response;
 }
 
-export async function API_UpdateCardRequest(id) {
+export async function API_UpdateCardRequest(id, body) {
+    const jsonBody = JSON.stringify(body);
+
     const response = await fetch(`/card/${id}`, {
-        method: 'PUT'
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: jsonBody
     });
     return response;
 }

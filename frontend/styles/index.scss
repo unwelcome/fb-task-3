@@ -110,7 +110,8 @@ p{
 
 #blur{
     position: fixed;
-    display: block;
+    // display: block;
+    display: none;
     width: 100%;
     height: 100%;
     z-index: 64;
@@ -119,7 +120,8 @@ p{
 
 .form-wrapper{
     position: fixed;
-    display: flex;
+    // display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
@@ -140,6 +142,7 @@ p{
 .form-item{
     display: grid;
     grid-template-columns: 1fr 2fr;
+    gap: 10px;
 
     &-label{
         font-size: 18px;

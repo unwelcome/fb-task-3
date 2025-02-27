@@ -1,11 +1,14 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const fs = require('fs');
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { readJSONFromFile } from './fileReader.js';
+import bodyParser from 'body-parser';
 
 const app = express();
 const PORT = 8080;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const publicDirectoryPath = path.join(__dirname, '..', 'frontend');
 
 // Обслуживаем статические файлы из указанной папки
@@ -22,23 +25,18 @@ app.get('/', (req, res) => {
 });
 
 // Получить список карточек
-app.get('/cards', (req, res) => {
+app.get('/cards', async(req, res) => {
     const dataFilePath = path.join(__dirname, '..', 'database/cards.json');
 
-    fs.readFile(dataFilePath, 'utf8', (err, data) => {
-        if (err) {
-            console.error('Ошибка чтения файла data.json:', err);
-            return res.status(500).json({ error: 'Ошибка чтения данных' });
-        }
+    try {
+        const fileData = await readJSONFromFile(dataFilePath);
 
-        try {
-            const jsonData = JSON.parse(data);
-            res.json(jsonData);
-        } catch (parseError) {
-            console.error('Ошибка парсинга JSON:', parseError);
-            return res.status(500).json({ error: 'Ошибка парсинга данных' });
-        }
-    });
+        if (fileData[0] !== 200) res.status(fileData[0]).json(fileData[1]);
+        else res.json(fileData[1]);
+    } catch (error) {
+        console.error("Error reading cards:", error);
+        res.status(500).json({error: "Internal Server Error"});
+    }
 });
 
 // Запуск сервера
