@@ -254,4 +254,70 @@ p {
 }
 .create-item-btn-add:active {
   background-color: #bbae00;
+}
+
+.chat-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #cacaca;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.chat-message {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 200px;
+  border-radius: 10px;
+}
+.chat-message-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  height: 400px;
+  width: 300px;
+  overflow-y: scroll;
+}
+.chat-message-my {
+  background-color: rgb(41, 134, 226);
+}
+.chat-message-other {
+  background-color: rgb(156, 156, 156);
+}
+
+.scrollable {
+  --scroll-bar-width: 6px;
+  --border-radius-scroll-bar: 3px;
+  --bg-color-track: #2d3444;
+  --bg-color-thumb: #457dc7;
+  overflow-y: scroll;
+  scrollbar-width: var(--scroll-bar-width);
+}
+.scrollable::-webkit-scrollbar {
+  width: var(--scroll-bar-width);
+}
+.scrollable::-moz-scrollbar {
+  width: var(--scroll-bar-width);
+}
+.scrollable::-webkit-scrollbar-track {
+  background-color: var(--bg-color-track);
+  border-radius: var(--border-radius-scroll-bar);
+}
+.scrollable::-moz-scrollbar-track {
+  background-color: var(--bg-color-track);
+  border-radius: var(--border-radius-scroll-bar);
+}
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: var(--bg-color-thumb);
+  border-radius: var(--border-radius-scroll-bar);
+}
+.scrollable::-moz-scrollbar-thumb {
+  background-color: var(--bg-color-thumb);
+  border-radius: var(--border-radius-scroll-bar);
 }/*# sourceMappingURL=index.css.map */
