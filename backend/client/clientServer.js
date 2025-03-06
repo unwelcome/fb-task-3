@@ -29,5 +29,5 @@ await server.start();
 server.applyMiddleware({ app, path: '/graphql' });
 
 app.listen(PORT, () => {
-  console.log('Сервер GraphQL запущен по адресу http://localhost:', PORT);
+  console.log('Клиент сервер на GraphQL запущен по адресу http://localhost:', PORT);
 });

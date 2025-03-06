@@ -47,4 +47,4 @@ wss.on('connection', async(ws) => {
     });
 });
 
-console.log('Сервер WebSocket запущен на порту:', PORT);
+console.log('Чат сервер запущен на порту:', PORT);
