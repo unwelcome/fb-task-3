@@ -10,7 +10,7 @@ const resolvers = {
     Query: {
         products: async () => { // Резолвер для запроса products
             const fileData = await readJSONFromFile(dataFilePath);
-            
+
             if(fileData[0] === 200) return fileData[1];
             else return [];
         },
@@ -18,8 +18,9 @@ const resolvers = {
             const { id } = args;
 
             const fileData = await readJSONFromFile(dataFilePath);
+            const requiredProduct = fileData[1].find(product => product.id === parseInt(id));
 
-            if(fileData[0] === 200) return products.find(product => product.id === id);
+            if(fileData[0] === 200) return requiredProduct;
             else return {message: "Error, idk"};
         },
     },
