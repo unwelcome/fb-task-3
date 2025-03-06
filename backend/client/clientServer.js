@@ -17,7 +17,7 @@ const app = express();
 app.use(express.static(publicDirectoryPath));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(publicDirectoryPath, 'pages/index.html'));
+    res.sendFile(path.join(publicDirectoryPath, 'pages/client.html'));
 });
 
 const server = new ApolloServer({
