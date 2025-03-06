@@ -12,7 +12,7 @@ for(let categoryName of categories.keys()){
     bodyWrapperContent += Render_HTML_ShortCategoryWrapper(categoryName, categories.get(categoryName));
 }
 
-bodyWrapperHTML.innerHTML = bodyWrapperContent;
+bodyWrapperHTML.innerHTML =  bodyWrapperContent;
 
 const HTML_DescriptionTogglers = document.querySelectorAll('.description-toggler');
 
