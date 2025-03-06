@@ -16,3 +16,21 @@ export function Helper_SortCardByCategories(data) {
 
     return categories;
 }
+
+export function Helper_GetCurrentDateTimeString() {
+    const now = new Date();
+  
+    const dateString = now.toLocaleDateString('ru-RU', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  
+    const timeString = now.toLocaleTimeString('ru-RU', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  
+    return `${dateString} ${timeString}`;
+}

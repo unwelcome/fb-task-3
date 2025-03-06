@@ -1,4 +1,5 @@
 import { Render_HTML_ChatMessage } from "./render.js";
+import { Helper_GetCurrentDateTimeString } from "./helpers.js";
 
 const HTML_chatbox_wrapper = document.getElementById('chat-message-wrapper');
 const HTML_chat_input = document.getElementById('chat-input');
@@ -46,26 +47,8 @@ function sendMessage(){
     const body = {
         author: userType,
         text: HTML_chat_input.value,
-        date: getCurrentDateTimeString()
+        date: Helper_GetCurrentDateTimeString()
     };
     socket.send(JSON.stringify(body));
     HTML_chat_input.value = '';
-}
-
-function getCurrentDateTimeString() {
-    const now = new Date();
-  
-    const dateString = now.toLocaleDateString('ru-RU', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    });
-  
-    const timeString = now.toLocaleTimeString('ru-RU', {
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  
-    return `${dateString} ${timeString}`;
 }
