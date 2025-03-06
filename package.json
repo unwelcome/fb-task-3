@@ -5,15 +5,18 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "live": "concurrently \"node ./backend/chatServer.js\" \"node ./backend/adminServer.js\" \"node ./backend/userServer.js\""
+    "live": "concurrently \"node ./backend/chat/chatServer.js\" \"node ./backend/admin/adminServer.js\" \"node ./backend/client/clientServer.js\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "apollo-server-express": "^3.13.0",
     "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
     "express": "^4.21.2",
+    "graphql": "^16.10.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "ws": "^8.18.1"

@@ -1,0 +1,15 @@
+type Product {
+  id: ID!
+  name: String!
+  description: String
+  price: Float!
+  categories: [String!]
+}
+
+type Query {
+  # Запрос для получения всех товаров
+  products: [Product!]!
+
+  # Запрос для получения одного товара по ID
+  product(id: ID!): Product
+}
