@@ -13,7 +13,6 @@ socket.onopen = () => {
 
 socket.onmessage = event => {
     const messageArray = JSON.parse(event.data);
-    console.log(messageArray);
 
     for(let message of messageArray){
         const template = document.createElement('template');

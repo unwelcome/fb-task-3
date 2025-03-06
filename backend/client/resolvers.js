@@ -8,16 +8,16 @@ const dataFilePath = path.join(__dirname, '../../database/cards.json');
   
 const resolvers = {
     Query: {
-        products: () => { // Резолвер для запроса products
-            const fileData = readJSONFromFile(dataFilePath);
-
+        products: async () => { // Резолвер для запроса products
+            const fileData = await readJSONFromFile(dataFilePath);
+            
             if(fileData[0] === 200) return fileData[1];
             else return [];
         },
-        product: (parent, args) => { // Резолвер для запроса product
+        product: async (parent, args) => { // Резолвер для запроса product
             const { id } = args;
 
-            const fileData = readJSONFromFile(dataFilePath);
+            const fileData = await readJSONFromFile(dataFilePath);
 
             if(fileData[0] === 200) return products.find(product => product.id === id);
             else return {message: "Error, idk"};
