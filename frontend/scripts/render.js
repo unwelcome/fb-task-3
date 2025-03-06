@@ -49,3 +49,14 @@ export function Render_HTML_CreateItem(name='', categories='', price=0, descipti
         </section>
     `;
 }
+
+export function Render_HTML_ChatMessage(isMyMessage=false, text='', date='01.01.1970 00:00'){
+    return `
+        <div class="chat-message ${isMyMessage ? 'chat-message-my' : 'chat-message-other' }">
+            <p class="chat-messsage-text">${text}</p>
+            <div class="chat-message-info">
+                <p class="chat-message-info-date">${date}</p>
+            </div>
+        </div>
+    `;
+}

@@ -20,3 +20,12 @@ export async function writeJSONToFile(path, data) {
         return false;
     }
 }
+
+export async function addJSONToFile(path, data){
+    const fileData = await readJSONFromFile(path);
+    if(fileData[0] !== 200) return false;
+
+    fileData[1].push(data);
+
+    return writeJSONToFile(path, fileData[1]);
+}
