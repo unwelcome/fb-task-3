@@ -1,17 +1,18 @@
 import express from 'express';
 import path from 'path';
-import { readJSONFromFile, writeJSONToFile } from './fileReader.js';
-import { fileURLToPath } from 'url';
+import { readJSONFromFile, writeJSONToFile } from '../helpers/fileReader.js';
 import bodyParser from 'body-parser';
 import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import { fileURLToPath } from 'url';
 
 const app = express();
 const PORT = 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const publicDirectoryPath = path.join(__dirname, '..', 'frontend');
+const publicDirectoryPath = path.join(__dirname, '../../frontend');
+const dataFilePath = path.join(__dirname, '../../database/cards.json');
 
 // Обслуживаем статические файлы из указанной папки
 app.use(express.static(publicDirectoryPath));
@@ -25,8 +26,6 @@ app.get('/', (req, res) => {
 
 // Получить список карточек
 app.get('/cards', async(req, res) => {
-    const dataFilePath = path.join(__dirname, '..', 'database/cards.json');
-
     try {
         const fileData = await readJSONFromFile(dataFilePath);
 
@@ -40,8 +39,6 @@ app.get('/cards', async(req, res) => {
 
 // Создать новые карточки
 app.post('/card', async(req, res) => {
-    const dataFilePath = path.join(__dirname, '..', 'database/cards.json');
-    
     try {
         const fileData = await readJSONFromFile(dataFilePath);
         if (fileData[0] !== 200) res.status(fileData[0]).json(fileData[1]);
@@ -73,7 +70,6 @@ app.post('/card', async(req, res) => {
 app.put('/card/:id', async(req, res) => {
     const cardID = parseInt(req.params.id);
     const updatedCardData = req.body;
-    const dataFilePath = path.join(__dirname, '..', 'database/cards.json');
 
     try {
         const fileData = await readJSONFromFile(dataFilePath);
@@ -113,7 +109,6 @@ app.put('/card/:id', async(req, res) => {
 // Удалить карточку по ID
 app.delete('/card/:id', async(req, res) => {
     const cardID = parseInt(req.params.id);
-    const dataFilePath = path.join(__dirname, '..', 'database/cards.json');
 
     try {
         const fileData = await readJSONFromFile(dataFilePath);
@@ -141,7 +136,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: 'http://localhost:3000',
+                url: 'http://localhost:' + PORT,
             },
         ],
     },

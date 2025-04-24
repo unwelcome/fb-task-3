@@ -65,6 +65,16 @@ p{
         flex-grow: 1;
     }
 
+    &>.description-toggler{
+        cursor: pointer;
+        color: rgb(0, 158, 206);
+    }
+
+    &>.description-toggler-bad{
+        cursor: pointer;
+        color: rgb(128, 128, 128);
+    }
+
     &>.btn{
         padding: 10px;
         border-radius: 10px;

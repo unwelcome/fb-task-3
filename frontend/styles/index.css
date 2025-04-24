@@ -62,6 +62,14 @@ p {
   text-align: justify;
   flex-grow: 1;
 }
+.card > .description-toggler {
+  cursor: pointer;
+  color: rgb(0, 158, 206);
+}
+.card > .description-toggler-bad {
+  cursor: pointer;
+  color: rgb(128, 128, 128);
+}
 .card > .btn {
   padding: 10px;
   border-radius: 10px;
