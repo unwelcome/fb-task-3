@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # main.js
+      - "8080:8080"  # admin.js
+      - "8081:8081"  # chat.js
+    volumes:
+      - ./database:/app/database
+    environment:
+      NODE_ENV: development

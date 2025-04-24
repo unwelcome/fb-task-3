@@ -1,20 +1,18 @@
 {
-  "name": "frontback-t2",
+  "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "live": "concurrently \"node ./backend/chat/chatServer.js\" \"node ./backend/admin/adminServer.js\" \"node ./backend/client/clientServer.js\""
+    "live": "concurrently \"node ./chat/chatServer.js\" \"node ./admin/adminServer.js\" \"node ./client/clientServer.js\""
   },
-  "keywords": [],
-  "author": "",
+  "author": "4aik",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "@apollo/client": "^3.13.1",
+    "@apollo/client": "^3.13.8",
     "apollo-server-express": "^3.13.0",
-    "body-parser": "^1.20.3",
+    "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "graphql": "^16.10.0",

@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 const PORT = 8081;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const chatMessagesFile = path.join(__dirname, '../../database/chat_messages.json');
+const chatMessagesFile = path.join(__dirname, '../database/chat_messages.json');
 
 const wss = new WebSocketServer({ port: PORT });
 

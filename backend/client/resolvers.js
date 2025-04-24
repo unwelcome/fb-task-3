@@ -4,7 +4,7 @@ import { readJSONFromFile } from '../helpers/fileReader.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dataFilePath = path.join(__dirname, '../../database/cards.json');
+const dataFilePath = path.join(__dirname, '../database/cards.json');
   
 const resolvers = {
     Query: {

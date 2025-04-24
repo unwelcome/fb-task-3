@@ -11,8 +11,8 @@ const PORT = 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const publicDirectoryPath = path.join(__dirname, '../../frontend');
-const dataFilePath = path.join(__dirname, '../../database/cards.json');
+const publicDirectoryPath = path.join(__dirname, '../frontend');
+const dataFilePath = path.join(__dirname, '../database/cards.json');
 
 // Обслуживаем статические файлы из указанной папки
 app.use(express.static(publicDirectoryPath));
