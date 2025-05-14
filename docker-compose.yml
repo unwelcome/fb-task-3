@@ -5,10 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "3001:3000"  # admin.js
-      - "8082:8080"  # main.js
-      - "8083:8081"  # chat.js
+    # ports:
+      # - "3001:3000"  # admin.js
+      # - "8082:8080"  # main.js
+      # - "8083:8081"  # chat.js
     volumes:
       - ./database:/app/database
     environment:
@@ -20,10 +20,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "3004:3000"  # admin.js
-      - "8085:8080"  # main.js
-      - "8086:8081"  # chat.js
     volumes:
       - ./database:/app/database
     environment:
@@ -35,10 +31,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "3007:3000"  # admin.js
-      - "8088:8080"  # main.js
-      - "8089:8081"  # chat.js
     volumes:
       - ./database:/app/database
     environment:
