@@ -4,11 +4,10 @@ services:
   backend1:
     build:
       context: .
-      dockerfile: Dockerfile
-    # ports:
-      # - "3001:3000"  # admin.js
-      # - "8082:8080"  # main.js
-      # - "8083:8081"  # chat.js
+      dockerfile: ./backend/server/Dockerfile
+    ports:
+      - "3000:3000"  # main.js
+      - "8080:8080"  # admin.js
     volumes:
       - ./database:/app/database
     environment:
@@ -19,7 +18,7 @@ services:
   backend2:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./backend/server/Dockerfile
     volumes:
       - ./database:/app/database
     environment:
@@ -30,7 +29,18 @@ services:
   backend3:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./backend/server/Dockerfile
+    volumes:
+      - ./database:/app/database
+    environment:
+      NODE_ENV: development
+    networks:
+      - app-network
+
+  chat:
+    build:
+      context: .
+      dockerfile: ./backend/chat/Dockerfile
     volumes:
       - ./database:/app/database
     environment:
@@ -50,6 +60,7 @@ services:
       - backend1
       - backend2
       - backend3
+      - chat
     networks:
       - app-network
 

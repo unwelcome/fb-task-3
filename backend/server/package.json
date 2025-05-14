@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "live": "concurrently \"node ./chat/chatServer.js\" \"node ./admin/adminServer.js\" \"node ./client/clientServer.js\""
+    "live": "concurrently \"node ./admin/adminServer.js\" \"node ./client/clientServer.js\""
   },
   "author": "4aik",
   "license": "ISC",
@@ -17,8 +17,7 @@
     "express": "^4.21.2",
     "graphql": "^16.10.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1",
-    "ws": "^8.18.1"
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"

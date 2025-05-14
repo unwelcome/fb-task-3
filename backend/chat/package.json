@@ -1,0 +1,16 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "websocket chat",
+  "license": "ISC",
+  "author": "4aik",
+  "type": "module",
+  "main": "chatServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "live": "node chatServer.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.2"
+  }
+}
