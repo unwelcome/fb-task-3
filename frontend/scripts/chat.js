@@ -5,7 +5,7 @@ const HTML_chatbox_wrapper = document.getElementById('chat-message-wrapper');
 const HTML_chat_input = document.getElementById('chat-input');
 const HTML_chat_send = document.getElementById('chat-send');
 
-const socket = new WebSocket('ws://localhost:8081');
+const socket = new WebSocket('ws://localhost:82');
 
 socket.onopen = () => {
     console.log('Соединение установлено');

@@ -60,8 +60,10 @@ export async function API_CreateCardsRequest(body) {
     return response;
 }
 
+const graphQLAPI = 'http://localhost:81/graphql'; //http://localhost:8080/graphql
+
 export async function API_GetAllCardsRequestGraphQL(){
-    const res = await fetch('http://localhost:8080/graphql', {
+    const res = await fetch(graphQLAPI, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -75,7 +77,7 @@ export async function API_GetAllCardsRequestGraphQL(){
 }
 
 export async function API_GetCardByIDRequestGraphQL(cardID){
-    const res = await fetch('http://localhost:8080/graphql', {
+    const res = await fetch(graphQLAPI, { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
